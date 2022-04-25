@@ -1,0 +1,14 @@
+main {
+    margin-top: 70px;
+}
+
+.main-page-title {
+    font-size: 45px;
+    color: blueviolet;
+    margin: 0 auto;
+}
+
+.sort-by-price {
+    width: 30px;
+    height: 20px;
+}
