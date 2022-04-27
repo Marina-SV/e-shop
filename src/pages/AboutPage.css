@@ -1,0 +1,12 @@
+.about-info-container {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.about-info {
+    margin-bottom: 50px;
+    margin-top: 60px;
+    font-size: 18px;
+    line-height: 2em;
+}
+

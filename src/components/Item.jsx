@@ -1,21 +1,34 @@
 
+import { Link } from "react-router-dom"
 import "./Item.css"
+import { useNavigate } from "react-router";
 
 export default function Item(props) {
-    const {id, title, price, categoty, description, image, addToBucket} = props
+    const { id, title, price, categoty, description, image, addToBasket } = props;
+    const navigate = useNavigate();
+
+    const onCardClick = () => {
+        navigate(`/products/${id}`);
+    };
+
+    const onAdd = (e) => {
+        e.stopPropagation()
+        addToBasket(props)
+    }
+
+
     return (
-            <div className="item-card">
-                <div className="item-image">
-                    <img className="image" src={image} />
-                </div>
-                <div className="item-description">
-                    <p>{title}</p>
-                    <p>{price}$</p>
-                    <p>{categoty}</p>
-                    <p>{description}</p>
-                    <button onClick={() => addToBucket(props)}>Add to Bucket</button>
-                </div>
+        <div className="item-card" onClick={onCardClick}>
+            <div className="item-image">
+                <img className="image" src={image} />
             </div>
-       
+            <div className="item-info">
+                <p className="item-title">{title}</p>
+                <p className="item-price">{price}$</p>
+                <p >{categoty}</p>
+                <p className="item-description">{description}</p>
+                <button className="add-to-bucket" onClick={onAdd}>Add to Basket</button>
+            </div>
+        </div>
     )
 }

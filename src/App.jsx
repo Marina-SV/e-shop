@@ -2,14 +2,17 @@ import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import MainPage from "./pages/MainPage";
 import Header from "./components/Header";
-import OrderItemsPage from "./pages/OrderItemsPage"
+import Footer from "./components/Footer";
+import OrderItemsPage from "./pages/OrderItemsPage";
+import ItemPage from "./pages/ItemPage"; 
+import AboutPage from "./pages/AboutPage";
 import { useState, useEffect } from "react";
 
 export default function App() {
 
     const [items, setItem] = useState(null);
     const [categories, setCategories] = useState([]);
-    const [bucketItems, setBucketItems] = useState([]); 
+    const [basketItems, setBasketItems] = useState([]); 
 
 
 
@@ -40,7 +43,7 @@ export default function App() {
 
 
     const getItem = async () => {
-        const res = await fetch("https://fakestoreapi.com/products?limit=10")
+        const res = await fetch("https://fakestoreapi.com/products")
         const data = await res.json()
         setItem(data)
     }
@@ -59,7 +62,7 @@ export default function App() {
     }
 
     const getItemsByCotegoty = async (category) => {
-        const res = await fetch(`https://fakestoreapi.com/products/category/${category}`)
+        const res = await fetch(`https://fakestoreapi.com/products/${category ? `category/${category}` : ''}`)
         const data = await res.json()
         return data
     }
@@ -68,22 +71,24 @@ export default function App() {
         setItem(await getItemsByCotegoty(category))
     }
 
-    const addToBucket = async (product) => {
+    const addToBasket = async (product) => {
         // const res = await fetch(`https://fakestoreapi.com/products/${id}`)
         // const data = await res.json()
-        setBucketItems([...bucketItems, product])
+        setBasketItems([...basketItems, product])
     }
-
 
     return (
         <div className="main-container">
-            <Header categories={categories} onCategoryClick={onCategoryClick}/>
+            <Header categories={categories} onCategoryClick={onCategoryClick} count={basketItems.length}/>
             <Routes>
                 <Route path="/">
-                    <Route index element={<MainPage items={items} addToBucket={addToBucket} sortDown={sortDown} sortUp={sortUp}/>} />
-                    <Route path="/order" element={<OrderItemsPage bucketItems={bucketItems}/>} />
+                    <Route index element={<MainPage items={items} addToBasket={addToBasket} sortDown={sortDown} sortUp={sortUp}/>} />
+                    <Route path="/order" element={<OrderItemsPage basketItems={basketItems}/>} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/products/:id" element={<ItemPage onAdd={addToBasket}/>} />
                 </Route>
             </Routes>
+            <Footer />
         </div>
     )
 }
