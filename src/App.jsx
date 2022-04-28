@@ -7,12 +7,16 @@ import OrderItemsPage from "./pages/OrderItemsPage";
 import ItemPage from "./pages/ItemPage"; 
 import AboutPage from "./pages/AboutPage";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import SuccessPage from "./pages/SuccessPage";
 
 export default function App() {
 
     const [items, setItem] = useState(null);
     const [categories, setCategories] = useState([]);
     const [basketItems, setBasketItems] = useState([]); 
+
+    const navigate = useNavigate();
 
 
 
@@ -69,6 +73,7 @@ export default function App() {
 
     const onCategoryClick = async (category) => {
         setItem(await getItemsByCotegoty(category))
+        navigate('/')
     }
 
     const addToBasket = async (product) => {
@@ -84,6 +89,7 @@ export default function App() {
                 <Route path="/">
                     <Route index element={<MainPage items={items} addToBasket={addToBasket} sortDown={sortDown} sortUp={sortUp}/>} />
                     <Route path="/order" element={<OrderItemsPage basketItems={basketItems}/>} />
+                    <Route path="/order/success" element={<SuccessPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/products/:id" element={<ItemPage onAdd={addToBasket}/>} />
                 </Route>

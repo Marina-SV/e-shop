@@ -24,6 +24,7 @@ export default function ItemPage(props) {
         </main>
     )
 
+
     const { image, price, title, description, categoty } = item;
     const { onAdd } = props;
 
