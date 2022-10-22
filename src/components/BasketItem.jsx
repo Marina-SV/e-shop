@@ -2,13 +2,13 @@
 import "./BasketItem.css";
 
 export default function BasketItem(props) {
-    const { id, title, price, category, description, image } = props;
-    const isShowSizes = category === "men\'s clothing" || category === "women's clothing"
+    const { title, price, category, image } = props;
+    const isShowSizes = category === "men's clothing" || category === "women's clothing"
 
     return (
         <div className="item-card-in-basket">
             <div className="item-image-in-basket">
-                <img className="image-in-basket" src={image} />
+                <img alt={""} className="image-in-basket" src={image} />
             </div>
             <div className="item-info-in-basket">
                 <p className="item-title"> {title}</p>

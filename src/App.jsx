@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import MainPage from "./pages/MainPage";
 import Header from "./components/Header";
@@ -26,10 +26,12 @@ export default function App() {
         sortItemsDown.sort((a, b) => {
             if(a.price > b.price) return 1
             if(a.price < b.price) return -1
+            return 0
         }) 
         sortItemsDown2.sort((a, b) => {
             if(a.price > b.price) return 1
             if(a.price < b.price) return -1
+            return 0
         })
         setItem(sortItemsDown)
         setCategories(sortItemsDown2)
@@ -40,6 +42,7 @@ export default function App() {
         sortItemsDown.sort((a, b) => {
             if(a.price > b.price) return -1
             if(a.price < b.price) return 1
+            return 0
         }) 
         setItem(sortItemsDown)
     }

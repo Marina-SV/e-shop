@@ -1,5 +1,3 @@
-
-import { Link } from "react-router-dom"
 import "./Item.css"
 import { useNavigate } from "react-router";
 
@@ -20,7 +18,7 @@ export default function Item(props) {
     return (
         <div className="item-card" onClick={onCardClick}>
             <div className="item-image">
-                <img className="image" src={image} />
+                <img alt={''} className="image" src={image} />
             </div>
             <div className="item-info">
                 <p className="item-title">{title}</p>

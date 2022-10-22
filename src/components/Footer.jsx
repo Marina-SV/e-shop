@@ -19,10 +19,10 @@ export default function Footer() {
                 </div>
                 <div className="footer-media">
                     <p className="footer-contacts"> WeRSM:</p>
-                    <img className="social-media-img" src={FBImg} />
-                    <img className="social-media-img" src={VkImg} />
-                    <img className="social-media-img" src={InstaImg} />
-                    <img className="social-media-img" src={WhAppImg} />
+                    <img className="social-media-img" src={FBImg}  alt={''}/>
+                    <img className="social-media-img" src={VkImg} alt={''}/>
+                    <img className="social-media-img" src={InstaImg} alt={''}/>
+                    <img className="social-media-img" src={WhAppImg} alt={''}/>
                 </div>
             </div>
         </footer>
